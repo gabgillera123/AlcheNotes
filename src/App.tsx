@@ -25,6 +25,7 @@ import { SpellbookModal } from './components/SpellbookModal';
 import { GatherIngredientsModal } from './components/GatherIngredientsModal';
 import { CauldronStabilizeModal } from './components/CauldronStabilizeModal';
 import { UpgradesModal } from './components/UpgradesModal';
+import { JavaSourceModal } from './components/JavaSourceModal';
 import { sound } from './utils/sound';
 
 type GameState = 'title' | 'playing' | 'paused' | 'gameover';
@@ -76,6 +77,7 @@ export default function App() {
   const [gatherTargetIng, setGatherTargetIng] = useState<IngredientId>('dragon_scale');
   const [stabilizeOpen, setStabilizeOpen] = useState<boolean>(false);
   const [upgradesOpen, setUpgradesOpen] = useState<boolean>(false);
+  const [javaModalOpen, setJavaModalOpen] = useState<boolean>(false);
   const [guideMinimized, setGuideMinimized] = useState<boolean>(false);
   const [shopNotice, setShopNotice] = useState<string>(
     'Ignis the Apprentice rushed in with flaming hair! Check the recipe or gather a Dragon Scale!'
@@ -518,6 +520,16 @@ export default function App() {
               >
                 UPLOAD / EDIT REVIEWER
               </button>
+              <button
+                type="button"
+                onClick={() => {
+                  sound.playClick();
+                  setJavaModalOpen(true);
+                }}
+                className="pixel-btn pixel-box bg-[#0284c7] px-5 py-4 font-pixel text-sm text-white hover:bg-[#0369a1]"
+              >
+                JAVA OOP SOURCE (.JAVA)
+              </button>
             </div>
           </div>
 
@@ -599,6 +611,18 @@ export default function App() {
 
             {/* Right Cluster: Upgrades & Utility Controls */}
             <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  sound.playClick();
+                  setJavaModalOpen(true);
+                }}
+                className="pixel-btn pixel-box-sm bg-[#0284c7] px-3 py-1 font-pixel text-xs font-bold text-white hover:bg-[#0369a1] whitespace-nowrap shrink-0"
+              >
+                Java OOP Code (.java)
+              </button>
+
               <button
                 type="button"
                 onClick={(e) => {
@@ -1230,6 +1254,11 @@ export default function App() {
         gold={gold}
         ownedUpgrades={ownedUpgrades}
         onBuyUpgrade={handleBuyUpgrade}
+      />
+
+      <JavaSourceModal
+        isOpen={javaModalOpen}
+        onClose={() => setJavaModalOpen(false)}
       />
 
       {/* =====================================================================
