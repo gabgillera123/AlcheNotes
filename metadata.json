@@ -1,0 +1,6 @@
+{
+  "name": "QuizAlchemist",
+  "description": "A cozy 2D pixel-art magical potion shop game where studying your real-life exam flashcards harvests rare ingredients and brews 5-star elixirs for quirky customers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
